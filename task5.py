@@ -51,7 +51,3 @@ def task(first_string, second_string):
                 out.append([str(i),str(j)])
     # Возвращаем результат
     return json.dumps(out)
-
-a = json.dumps(["1", ["2","3"],"4", ["5", "6", "7"], "8", "9", "10"])
-b = json.dumps([["1","2"], ["3","4","5"], "6", "7", "9", ["8","10"]])
-print(task(a,b))
