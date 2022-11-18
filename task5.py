@@ -13,8 +13,7 @@ def json_to_dict(string):
         i += 1
     return res        
 
-# Основная функция, на вход две json-строки, возвращает True,
-# если противоречия нет, и False, если найдено противоречие.
+# Основная функция, на вход две json-строки, возвращает json-строку с парами противоречий
 def task(first_string, second_string):
     # Преобразуем первую ранжировку в таблицу
     first = json_to_dict(first_string)
@@ -42,9 +41,11 @@ def task(first_string, second_string):
         for j in range(10):
             S[j][i] = A[j][i] * B[j][i]
 
-    # Проверяем, есть ли противоречие
+    out = []
+    # Проверяем, есть ли противоречие, и возрващаем False, если есть
     for i in range(len(first)):
         for j in range(i, len(first)):
             if S[i][j] == 0:
-                return False
-    return True
+                out.append([str(i),str(j)])
+    # Возвращаем результат
+    return out
