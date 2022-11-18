@@ -1,5 +1,7 @@
 # python 3.11.0
 
+import json
+
 # Фукнция для преобразования строки в более удобный вид
 def json_to_dict(string):
     i = 0
@@ -16,7 +18,7 @@ def json_to_dict(string):
 # Основная функция, на вход две json-строки, возвращает json-строку с парами противоречий
 def task(first_string, second_string):
     # Преобразуем первую ранжировку в таблицу
-    first = json_to_dict(first_string)
+    first = json_to_dict(json.loads(first_string))
     A = [ [0 for i in range(len(first))] for i in range(len(first)) ]
     for i in first:
         for j in first:
@@ -26,7 +28,7 @@ def task(first_string, second_string):
                 A[i][j] = 0
 
     # Преобразуем вторую ранжировку в таблицу
-    second = json_to_dict(second_string)
+    second = json_to_dict(json.loads(second_string))
     B = [ [0 for i in range(len(second))] for i in range(len(second)) ]
     for i in second:
         for j in second:
@@ -48,4 +50,8 @@ def task(first_string, second_string):
             if S[i][j] == 0:
                 out.append([str(i),str(j)])
     # Возвращаем результат
-    return out
+    return json.dumps(out)
+
+a = json.dumps(["1", ["2","3"],"4", ["5", "6", "7"], "8", "9", "10"])
+b = json.dumps([["1","2"], ["3","4","5"], "6", "7", "9", ["8","10"]])
+print(task(a,b))
